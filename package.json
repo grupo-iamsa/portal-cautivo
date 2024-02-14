@@ -1,0 +1,25 @@
+{
+  "name": "portal-cautivo",
+  "version": "0.1.0",
+  "main": "index.js",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JasubiPL/portal-cautivo.git"
+  },
+  "author": "Jasubi Piñeyro <gameportal7@hotmail.com>",
+  "license": "MIT",
+  "description": "Este es un portal cautivo par las taquills",
+  "bugs": {
+    "url": "https://github.com/JasubiPL/portal-cautivo/issues"
+  },
+  "homepage": "https://github.com/JasubiPL/portal-cautivo#readme",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev" : "node --watch index.js "
+  },
+  "keywords": [],
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
