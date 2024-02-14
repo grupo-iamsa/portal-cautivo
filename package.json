@@ -16,7 +16,7 @@
   "homepage": "https://github.com/JasubiPL/portal-cautivo#readme",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev" : "node --watch index.js"
+    "dev" : "node --watch index.js "
   },
   "keywords": [],
   "dependencies": {
