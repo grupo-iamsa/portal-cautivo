@@ -1,5 +1,6 @@
 const express = require("express") ;
 const getToken = require("./helpers/getToken");
+const cors = require("cors")
 
 
 const app = express()
@@ -12,6 +13,7 @@ const PORT = process.env.PORT || 7000
 const USER = 
 
 app.use(express.json())
+app.use(cors({ origin: "*"}))
 
 app.get("/api/login", async (req, res) => {
   
