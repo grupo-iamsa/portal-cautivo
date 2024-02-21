@@ -1,27 +1,96 @@
 const btnSend = document.querySelector("#btn-send")
 
-btnSend.addEventListener("click", sendConection)
-/**
- * @description se extraen los parametros de busqueda
- */
-const urlQuerys = new URLSearchParams(window.location.search)
+btnSend.addEventListener("click", handlerForm)
 
-const eapData = {
-  clientMac: urlQuerys.get("clientMac"),
-  clientIp: urlQuerys.get("clientIp"),
-  site: urlQuerys.get("site"),
-  redirectUrl: urlQuerys.get("redirectUrl"),
-  apMac: urlQuerys.get("apMac"),
-  ssidName: urlQuerys.get("ssidName"),
-  radioId: urlQuerys.get("radioId")
+const SERVER_IP = "172.30.106.34"
+const SERVER_PORT = "7000"
+
+
+function handlerForm(e){
+  e.preventDefault()
+  const formCheked = checkForm()
+  const controllerData = getUrlParams()
+
+  const connectionParams = {
+    userData: formCheked,
+    controllerData: controllerData
+  }
+
+  if(connectionParams.userData === undefined || connectionParams.controllerData === undefined){
+    return alert("Fallo al conectar")
+  }else{
+    setUserData(connectionParams)
+    //console.log(connectionParams)
+  }
+
+
 }
 
-console.log(eapData)
 
-localStorage.setItem('eapData', JSON.stringify(eapData))
+function getUrlParams(){
+  const urlQuerys = new URLSearchParams(window.location.search)
 
-async function sendConection(){
-  const res = await fetch(`http://192.168.100.34:7000/api/login`)
+  const controllerData = {
+    clientMac: urlQuerys.get("clientMac"),
+    clientIp: urlQuerys.get("clientIp"),
+    site: urlQuerys.get("site"),
+    redirectUrl: urlQuerys.get("redirectUrl"),
+    apMac: urlQuerys.get("apMac"),
+    ssidName: urlQuerys.get("ssidName"),
+    radioId: urlQuerys.get("radioId")
+  }
+
+  for (const param of Object.keys(controllerData)) {
+    // Verifica si el valor de la propiedad actual es falsy (undefined, null, false, "", 0, NaN)
+    if (!controllerData[param]) {
+      alert("Sin datos del controlador");
+      return undefined; // Termina el bucle si encuentra un valor falso
+    }
+  }
+
+  //si se obtienen los parametros de la URL retornamos la info
+  return controllerData
+}
+
+function checkForm(){
+
+  const userName = document.getElementById("name").value
+  const userPhone = document.getElementById("phone").value
+  const userEmail = document.getElementById("email").value
+  const userAge = document.getElementById("age").value
+
+  if(userName.length < 10 || userName.length > 30){
+    return alert("Ingrese un nombre valido")
+  }
+  if(userPhone.length > 13 || userPhone.length < 10){
+    return alert("Ingrese un numero de telefono valido")
+  }
+  if(userAge.length < 1 || userAge.length > 3){
+    return alert("Ingresa una edad valida")
+  }
+
+  const  userData = {
+    userName: userName,
+    userPhone : userPhone,
+    userEmail : userEmail,
+    userAge : userAge
+  }
+
+  //console.log({message: "Formulario Valido", data: userData})
+  return userData
+}
+
+async function setUserData(connectionParams){
+  console.log(connectionParams)
+
+  const res = await fetch(`http://${SERVER_IP}:${SERVER_PORT}/api/login`,{
+    method: "POST",
+    headers: {
+      "Content-type" : "application/json"
+    },
+    body: JSON.stringify(connectionParams)
+  })
+
   const data = await res.json()
   console.log(data)
 }
