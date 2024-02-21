@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <!-- 不可以删除，用以本地版本校准静态资源路径，从根目录获取 -->
+    <base href="/" />
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=1300,initial-scale=1,minimal-ui" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="stylesheet" href="theme/lib/css/spectrum-d0fce89613.css">
+    <link rel="stylesheet" id="su-css" href="theme/css/su-13f28bc853.css">
+    <title id="title">Omada Controller</title>
+    <noscript>
+        <meta http-equiv="refresh" content="0; url=error.html" />
+    </noscript>
+</head>
+
+<body>
+    <div id="main-container" class="m-b-0"></div>
+    <canvas id="canvas-test"></canvas>
+    <script type="text/javascript" src="js/libs/polyfill-6926951583.min.js"></script>
+    <script type="text/javascript" src="js/libs/g6-75b82cdd1d.min.js" async></script>
+    <script type="text/javascript" src="js/libs/jquery-4cb8672160.min.js"></script>
+    <script type="text/javascript" src="js/libs/jquery-16e37f8666.ui.min.js"></script>
+    <script type="text/javascript" src="js/libs/sockjs-e2b1fc0be3.min.js"></script>
+    <script type="text/javascript" src="js/libs/stomp-51779f8e6c.min.js"></script>
+    <!--<script type="text/javascript" src="js/libs/excanvas-884b8a4daa.min.js"></script>-->
+    <script type="text/javascript" src="js/libs/resize-observer-c32f1af8c3.min.js"></script>
+    <script type="text/javascript" src="js/libs/spectrum-dae9c90a3b.min.js"></script>
+    <script type="text/javascript" src="js/libs/jquery-202b9c1ad9.cookie.min.js"></script>
+    <script type="text/javascript" src="js/libs/perfect-scrollbar-f04dcc0069.min.js"></script>
+    <script type="text/javascript" src="js/libs/lottie-cedc90aaa6.min.js"></script>
+    <script type="text/javascript" src="js/libs/cryptoJS-242f7a6460.min.js"></script>
+    <script type="text/javascript" src="js/libs/moment-761502841c.min.js"></script>
+    <script type="text/javascript" src="js/libs/moment-timezone-with-data-5c8ed7bc8a.min.js"></script>
+    <script type="text/javascript" src="js/libs/json2html-8826f30caf.min.js"></script>
+    <script type="text/javascript" src="js/libs/qiankun-af1f11c736.min.js"></script>
+    <script type="text/javascript" src="js/su/su-0a8c9f6a7f.js"></script>
+    <script type="text/javascript">
+        $.su.language = new $.su.Language();
+    var canvas = document.getElementById("canvas-test");
+    try {
+        canvas.getContext("2d");
+        document.body.removeChild(canvas);
+    } catch (e) {
+        location.href = "./error.html";
+    }
+    var WebSocketsExist = !!window.WebSocket;
+    if (!WebSocketsExist) {
+        location.href = "./error.html";
+    }
+    </script>
+
+    <script type="text/javascript" src="js/su/service-2b15dbb221.js"></script>
+
+    <script type="text/javascript" src="js/su/data-2b0b059378.js"></script>
+
+    <script type="text/javascript" src="js/su/widget-928d8862e5.js"></script>
+
+    <script type="text/javascript" src="js/su/form-b51e928880.js"></script>
+
+    <script type="text/javascript" src="js/su/manager-a30c673f55.js"></script>
+
+    <script type="text/javascript" src="js/su/dataBind-f4e5c3f2c6.js"></script>
+
+    <script type="text/javascript" src="js/su/application-7c61407273.js"></script>
+
+    <script type="text/javascript" src="js/app/app-dcbae77637.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(e){
+        App = new $.su.App();
+        App.setContainer("main-container");
+        App.init().done(function(){
+            App.launch();
+        });
+    });
+    </script>
+</body>
+
+</html>
