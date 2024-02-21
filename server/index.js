@@ -1,24 +1,31 @@
-import express  from "express";
-import path from "node:path";
-import { writeFileSync } from "node:fs"
+const express = require("express") ;
+const getToken = require("./helpers/getToken");
+const cors = require("cors")
+
 
 const app = express()
 const PORT = process.env.PORT || 7000
 
+
+
+//Credentials Omada Controler
+
+const USER = 
+
 app.use(express.json())
+app.use(cors({ origin: "*"}))
 
-app.get("/", (req, res) =>{
-  res.send("Hola")
-})
-
-app.get("/api", (req, res) =>{
-  // const { clientMac, apMac, gatewayMac, vid, ssidName, radioId, site, redirectUrl, t } = req.query
-  console.log(req.query)
-  const EAPInfo = req.query
+app.get("/api/login", async (req, res) => {
   
-  writeFileSync(`${path.join(process.cwd())}/clients/clientMac_${EAPInfo.clientMac}.json`, JSON.stringify(EAPInfo))
-  res.json(EAPInfo)
-})
+  const token = await getToken()
+
+  if(token.error){
+    res.json({error: token.error})
+  }
+  
+  res.json(token)
+
+});
 
 app.listen(PORT, () =>{
   console.log(`Escuchando en el puerto ${PORT}`)

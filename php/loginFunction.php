@@ -5,7 +5,11 @@ define("OPERATOR_PASSWORD", "usuario123456");
 
 define("CONTROLLER", "192.168.100.28");
 define("PORT", "443");
-define("CONTROLlER_ID", "61c48dad6e3fdd80c79a1340bcf9817");
+define("CONTROLLER_ID", "61c48dad6e3fdd80c79a1340bcf9817");
+define('COOKIE_FILE_PATH', 'cookie.txt');
+define('TOKEN_FILE_PATH', '/token.txt');
+
+
 
 class miClase{
 
@@ -48,10 +52,13 @@ class miClase{
 
     //Prevent CSRF. TOKEN_FILE_PATH defines where to save Token.
 
-    if ($resObj->errorCode == 0) {
-    // login successfully
-      //self::setCSRFToken($resObj->result->token);
-      echo "<script>alert('login success');</script>";
+    $resObj = json_decode($res);
+    if ($resObj !== null) {
+        if (property_exists($resObj, 'errorCode') && $resObj->errorCode == 0 && property_exists($resObj, 'result') && property_exists($resObj->result, 'token')) {
+            self::setCSRFToken($resObj->result->token);
+        }
+    } else {
+        echo "Erro null";
     }
 
     curl_close($ch);

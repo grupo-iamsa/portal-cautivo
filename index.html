@@ -3,10 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portal Cautivo</title>
+  <link rel="stylesheet" href="./styles.css">
   <script defer src="./main.js"></script>
+  <title>Portal Cautivo</title>
 </head>
 <body>
-  <button id ="btn-send">Send</button>
+  <form submit="">
+    <picture>
+      <source srcset="/img/etn-logo.webp">
+      <img src="/img/etn-logo.png" alt="ETN etn-logo">
+    </picture>
+    <label >Nombre Completo:</label>
+    <input type="text" placeholder="Escribe tu nombre" required>
+    <label >Telefono:</label>
+    <input type="number" placeholder="(+52) 555..." required>
+    <label >Correo:</label>
+    <input type="email" placeholder="tu@email.com" required>
+    <label >Edad:</label>
+    <input type="number" placeholder="Escribe tu nombre" required>
+    <div class="accept-tyc">
+      <input type="checkbox" name="" id="" required>
+      <span>Acepto los <a href="https://etn.com.mx/terminos-condiciones.html">términos y condiciones</a>.</span>
+    </div>
+    
+    <button id ="btn-send">Conectar</button>
+  </form>
 </body>
 </html>

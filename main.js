@@ -20,23 +20,8 @@ console.log(eapData)
 
 localStorage.setItem('eapData', JSON.stringify(eapData))
 
-const CONTROLLER_IP = "192.168.100.28"
-const PORT = "443"
-const CONTROLlER_ID = "61c48dad6e3fdd80c79a1340bcf9817"
-
-const postData = {
-  OPERATOR_USERNAME : "usuario",
-  OPERATOR_PASSWORD : "usuario123456"
-}
-
 async function sendConection(){
-  const res = await fetch(`https://${CONTROLLER_IP}:${PORT}/${CONTROLlER_ID}/api/v2/hotspot/login`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(postData)
-  })
-  const data = res.json()
+  const res = await fetch(`http://192.168.100.34:7000/api/login`)
+  const data = await res.json()
   console.log(data)
 }
