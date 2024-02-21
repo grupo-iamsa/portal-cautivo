@@ -2,7 +2,7 @@ const btnSend = document.querySelector("#btn-send")
 
 btnSend.addEventListener("click", handlerForm)
 
-const SERVER_IP = "172.30.106.34"
+const SERVER_IP = "192.168.100.34"
 const SERVER_PORT = "7000"
 
 
@@ -21,6 +21,7 @@ function handlerForm(e){
   }else{
     setUserData(connectionParams)
     //console.log(connectionParams)
+    //testGet()
   }
 
 
@@ -81,16 +82,30 @@ function checkForm(){
 }
 
 async function setUserData(connectionParams){
-  console.log(connectionParams)
 
-  const res = await fetch(`http://${SERVER_IP}:${SERVER_PORT}/api/login`,{
-    method: "POST",
-    headers: {
-      "Content-type" : "application/json"
-    },
-    body: JSON.stringify(connectionParams)
-  })
+  try {
+    const res = await fetch(`http://${SERVER_IP}:${SERVER_PORT}/api/login`,{
+      method: "POST",
+      headers: {
+        "Content-type" : "application/json"
+      },
+      body: JSON.stringify(connectionParams)
+    });
 
-  const data = await res.json()
+    if (!res.ok) {
+      throw new Error('La solicitud HTTP falló con el código: ' + res.status);
+    }
+
+    const data = await res.json();
+    console.log(data);
+  } catch (error) {
+    console.error('Ocurrió un error al procesar la solicitud:', error);
+  }
+}
+
+//Prueba de conexion con la NuestraAPI
+async function testGet(){
+  const res = await fetch(`http://${SERVER_IP}:${SERVER_PORT}/api/login`)
+  const data =  await res.json()
   console.log(data)
 }
