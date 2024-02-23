@@ -2,7 +2,8 @@ const btnSend = document.querySelector("#btn-send")
 
 btnSend.addEventListener("click", handlerForm)
 
-const SERVER_IP = "172.30.106.134"
+//const SERVER_IP = "172.30.106.134"
+const SERVER_IP = "192.168.100.34"
 const SERVER_PORT = "7000"
 
 
