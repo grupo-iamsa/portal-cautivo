@@ -10,14 +10,15 @@ const SERVER_PORT = "7000"
 function handlerForm(e){
   e.preventDefault()
   const formCheked = checkForm()
-  const controllerData = getUrlParams()
+  //const controllerData = getUrlParams()
 
   const connectionParams = {
     userData: formCheked,
-    controllerData: controllerData
+    //controllerData: controllerData
   }
 
-  if(connectionParams.userData === undefined || connectionParams.controllerData === undefined){
+  //if(connectionParams.userData === undefined || connectionParams.controllerData === undefined){
+  if(connectionParams.userData === undefined ){
     return alert("Fallo al conectar")
   }else{
     setUserData(connectionParams)
@@ -85,7 +86,8 @@ function checkForm(){
 async function setUserData(connectionParams){
 
   try {
-    const res = await fetch(`http://${SERVER_IP}:${SERVER_PORT}/api`,{
+    // const res = await fetch(`http://${SERVER_IP}:${SERVER_PORT}/api`,{
+    const res = await fetch(`http://${SERVER_IP}:${SERVER_PORT}/auth`,{
       method: "POST",
       headers: {
         "Content-type" : "application/json"
@@ -99,6 +101,11 @@ async function setUserData(connectionParams){
 
     const data = await res.json();
     console.log(data);
+    console.log("Entro")
+
+    if(data.status === 200){
+      location.href = "https://etn.com.mx"
+     }
   } catch (error) {
     console.error('Ocurrió un error al procesar la solicitud:', error);
   }
@@ -109,4 +116,5 @@ async function testGet(){
   const res = await fetch(`http://${SERVER_IP}:${SERVER_PORT}/api/login`)
   const data =  await res.json()
   console.log(data)
+
 }

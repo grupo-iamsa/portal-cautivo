@@ -100,3 +100,29 @@ app.get("/test", async (req, res) =>{
     res.send(data2) 
   }
 })
+
+// <--------------- TEST 2 ------------------>
+const fs =require("fs")
+
+app.post("/auth", async(req, res) =>{
+  const { userData } = req.body
+  const { userEmail } = userData
+  console.log(userEmail)
+
+  const saveData = JSON.stringify(userData)
+  console.log(userData)
+
+  console.log("Guardadndo datos del usuario..." .yellow)
+   if(!userData){
+    console.log("El usuario no mando datos" .red)
+    res.json({status: 404, message:"sin datos enviados"})
+   }
+
+   const pathRegister = path.join(__dirname + "/usersRegisters/")
+   fs.writeFileSync(`${pathRegister}${userEmail}.json`, saveData)
+
+   console.log(`Usuario registrado exitosamente en: ${pathRegister}` .green)
+
+
+  res.json({status: 200})
+})
